@@ -7,6 +7,7 @@ import AccountPage from '../pages/AccountPage'
 import ListScreen from '../pages/ListScreen';
 import ModalScreen from '../pages/ModalScreen';
 import HomeScreen from '../pages/HomeScreen';
+import ExerciseDetailsScreen from '../pages/ExerciseDetailsScreen';
 import ForgatPasswordPage from '../pages/ForgatPassword'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -102,6 +103,9 @@ function Route() {
                   
                 />
                  <Stack.Screen name="ModalScreen" component={ModalScreen}
+                  
+                  />
+                   <Stack.Screen name="ExerciseDetailsScreen" component={ExerciseDetailsScreen}
                   
                   />
 

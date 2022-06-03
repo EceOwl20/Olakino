@@ -10,7 +10,7 @@ const ForgatPassword = ({ navigation }) => {
 
                 <Image
                     style={styles.emailLogo}
-                    source={require('../assets/email7.jpg')}
+                    source={require('../assets/images/email7.jpg')}
                 />
                 <View style={styles.backWhite}>
 

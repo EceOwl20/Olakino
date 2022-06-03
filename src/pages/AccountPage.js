@@ -13,7 +13,7 @@ const AccountPage = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ImageBackground
-                source={require('../assets/couplepracticing1.jpg')}
+                source={require('../assets/images/couplepracticing1.jpg')}
                 style={styles.backgroundImage}>
 
                 <View>
