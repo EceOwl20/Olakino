@@ -1,15 +1,13 @@
 import React from 'react'
 import Route from './src/navigation/Route'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducer from './src/Redux/Reducers/Reducer.js'
+import { View } from 'react-native'
 
 
 const App = () => {
     return (
-        <Provider store={createStore(reducer)}>
+        <View style={{flex:1}}>
             <Route />
-        </Provider>
+        </View>
     )
 }
 

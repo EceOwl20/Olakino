@@ -90,8 +90,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ddd',
         textAlign: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
         borderRadius: 10,
         margin: 15,
         borderColor: '#ddd'

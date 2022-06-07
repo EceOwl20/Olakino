@@ -8,11 +8,17 @@ import {
     TextInput,
     FlatList,
     StyleSheet,
+    ImageBackground,
     TouchableOpacity,
-   
+
 } from 'react-native'
 import * as Progress from 'react-native-progress';
 import LinearGradient from 'react-native-linear-gradient';
+
+import VideoPlay from './VideoPlay';
+import Header from './Header';
+import Banner from './Banner';
+import Card from './Card';
 
 
 
@@ -37,11 +43,39 @@ const profile = require('../assets/images/User.png');
 const plus = require('../assets/images/Plus.png');
 
 
+const Label = ({ children }) => <Text style={styles.label}>{children}</Text>;
+
+const data = [
+    {
+        name: 'Cycling',
+        status: 85,
+        image: cycle,
+        lightColor: '#f8e4d9',
+        color: '#fcf1ea',
+        darkColor: '#fac5a4',
+    },
+    {
+        name: 'Walking',
+        status: 25,
+        image: walk,
+        lightColor: '#d7f0f7',
+        color: '#e8f7fc',
+        darkColor: '#aceafc',
+    },
+    {
+        name: 'Yoga',
+        status: 85,
+        image: yoga,
+        lightColor: '#dad5fe',
+        color: '#e7e3ff',
+        darkColor: '#8860a2',
+    },
+];
 
 
 
 
-const SettingPage = ({ navigation }) => {
+const SettingPage = ({ navigation, props }) => {
     const [number, setNumber] = useState('')
 
 
@@ -51,7 +85,8 @@ const SettingPage = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.screen}>
-               
+                <Header />
+                <Banner />
             </View>
             <View style={{ marginHorizontal: '3%' }}>
                 <Label>Your Activities</Label>
@@ -88,28 +123,11 @@ const SettingPage = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 
-    container: {
-
-        flex: 1,
-        backgroundColor: '#F5FCFF',
-        textAlign: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-
-    },
-    heatButton: {
-        color: '#fff',
-        borderColor: 'black',
-        borderWidth: .2,
-        padding: 15,
-        borderRadius: 8,
-        textAlign: 'center',
-        fontSize: 20,
-        fontWeight: 'bold',
-        backgroundColor: '#27ae60',
-    }
+    container: { flex: 1 },
+    screen: { margin: '3%' },
 
 
 });
 
 export default SettingPage
+

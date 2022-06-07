@@ -145,7 +145,7 @@ function ListScreen({ navigation }) {
         </View>
 
         <Text style={{ fontSize: 30, lineHeight: 45 }}>
-          Good Morning Rushikesh
+          Good Morning Olakino
         </Text>
         <View
           style={{
