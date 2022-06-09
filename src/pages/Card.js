@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import * as Progress from 'react-native-progress';
@@ -77,14 +77,17 @@ const Card = ({ data, index }) => {
                         padding: 2,
                         borderRadius: 10,
                     }}>
-                    <Image
-                        source={next}
-                        style={{
-                            height: 12,
-                            width: 12,
-                            resizeMode: 'contain',
-                        }}
-                    />
+                    <TouchableOpacity>
+                        <Image
+                            source={next}
+                            style={{
+                                height: 12,
+                                width: 12,
+                                resizeMode: 'contain',
+                            }}
+                        />
+                    </TouchableOpacity>
+
                 </View>
             </View>
         </View>

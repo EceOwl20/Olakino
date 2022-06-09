@@ -5,7 +5,6 @@ import LoginScreen from '../pages/Login';
 import SettingPage from '../pages/SettingPage'
 import AccountPage from '../pages/AccountPage'
 import ListScreen from '../pages/ListScreen';
-import ModalScreen from '../pages/ModalScreen';
 import HomeScreen from '../pages/HomeScreen';
 import ExerciseDetailsScreen from '../pages/ExerciseDetailsScreen';
 import ForgatPasswordPage from '../pages/ForgatPassword'
@@ -41,9 +40,9 @@ function MyTabs() {
             <Tab.Screen name="Settings" component={SettingPage}
                 options={{
                     headerShown: false,
-                    tabBarLabel: 'Settings',
+                    tabBarLabel: 'Exercise Diet',
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="key" color={color} size={size} />
+                        <MaterialCommunityIcons name="heart" color={color} size={size} />
                     ),
 
 
@@ -59,7 +58,7 @@ function MyTabs() {
                 }}
 
             />
-             <Tab.Screen name="ListScreen" component={ListScreen}
+            <Tab.Screen name="ListScreen" component={ListScreen}
                 options={{
                     headerShown: false,
                     tabBarLabel: 'List',
@@ -102,9 +101,7 @@ function Route() {
                 <Stack.Screen name="ForgatPasswordPage" component={ForgatPasswordPage}
                   
                 />
-                 <Stack.Screen name="ModalScreen" component={ModalScreen}
-                  
-                  />
+                
                    <Stack.Screen name="ExerciseDetailsScreen" component={ExerciseDetailsScreen}
                   
                   />

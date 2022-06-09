@@ -1,221 +1,94 @@
-import React from 'react'
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StatusBar,
-  Image,
-  TextInput,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, FlatList, Image, Button, TouchableOpacity} from 'react-native'
+import React, { useState, useEffect } from 'react';
 
-import { COLORS, SIZES } from '../constantst';
-import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
+import axios from 'axios';
 
+const ListScreen = () => {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-import { Icon } from 'react-native-elements'
+  const getData = async () => {
+     try {
+      const response = await fetch('https://webapi20220604204829.azurewebsites.net/api/exercise/category'); //get
+      const json = await response.json();
+      console.log(json);
+      setData(json.movies);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
+  useEffect(() => {
+    getData();
+  }, []);
 
-
-let exercises = [
-  {
-    title: 'Diet Recommendation',
-    image: require('../assets/images/Exercise1.png'),
-    subTitle:
-      'Live happier and healthier by learning the fundamentals of diet recommendation',
-    duration: '5-20 MIN Course',
-  },
-  {
-    title: 'Kegel Exercises',
-    image: require('../assets/images/Exercise2.png'),
-    subTitle:
-      'Live happier and healthier by learning the fundamentals of kegel exercises',
-    duration: '10-20 MIN Course',
-  },
-  {
-    title: 'Meditation',
-    image: require('../assets/images/Exercise3.png'),
-    subTitle:
-      'Live happier and healthier by learning the fundamentals of meditation and mindfulness',
-    duration: '3-10 MIN Course',
-  },
-  {
-    title: 'Yoga',
-    image: require('../assets/images/Exercise4.png'),
-    subTitle: 'Live happier and healthier by learning the fundamentals of Yoga',
-    duration: '5-10 MIN Course',
-  },
-];
-
-
-
-
-
-function ListScreen({ navigation }) {
-
-  const ExerciseItem = ({ exercise }) => {
     return (
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('ExerciseDetailsScreen', { exercise: exercise })
-        }
-        activeOpacity={0.8}
-        style={{
-          backgroundColor: COLORS.white,
-          width: 0.5 * SIZES.width - 35,
-          margin: 10,
-          height: 180,
-          borderRadius: 10,
-          padding: 15,
-          shadowColor: '#9e9898',
-          elevation: 5,
-        }}>
-        <Image
-          source={exercise.image}
-          style={{
-            width: '100%',
-            resizeMode: 'cover',
-            flex: 1,
-          }}
-        />
-        <Text style={{ marginTop: 20, textAlign: 'center', fontSize: 16 }}>
-          {exercise.title}
-        </Text>
-      </TouchableOpacity>
-    );
-  };
+        <SafeAreaView>
+            <Text>HomeScreen</Text>
+            <TouchableOpacity onPress={()=>getData()}>
+              <Text>AAAA</Text>
+            </TouchableOpacity>
+            <FlatList
+                data={data}
 
-  return (
-    <SafeAreaView style={{ flex: 1, position: 'relative' }}>
-      <StatusBar
-        backgroundColor={COLORS.accent + '30'}
-        barStyle="dark-content"
-        animated={true}
-      />
-      <View
-        style={{
-          width: '100%',
-          height: 0.45 * SIZES.height,
-          padding: 30,
-          backgroundColor: COLORS.accent + '20',
-          position: 'relative',
-        }}>
-        <Image
-          source={require('../assets/images/BgOrange.png')}
-          style={{
-            position: 'absolute',
-            top: 60,
-            left: -50,
-          }}
-        />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-          }}>
-          <View
-            style={{
-              width: 60,
-              height: 60,
-              backgroundColor: COLORS.accent + '45',
-              marginRight: 0,
-              borderRadius: 30,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                height: 3,
-                backgroundColor: COLORS.white,
-                width: '40%',
-                marginBottom: 8,
-                marginLeft: -5,
-              }}></View>
-            <View
-              style={{
-                height: 3,
-                backgroundColor: COLORS.white,
-                width: '40%',
-                marginLeft: 5,
-              }}></View>
-          </View>
-        </View>
+                key={(item) => item.id.toString()}
+                numColumn={4}
+                ListEmptyComponent={() => <View><Text>Veri Yok</Text></View>}
+                renderItem={({ item }) => <View style={styles.container}>
+                    <View style={styles.styletitle}>
+                        <View>
+                            <Text>id:{item.userId}</Text>
+                        </View>
+                        <View>
+                            <Text >name : {item.id}</Text>
 
-        <Text style={{ fontSize: 30, lineHeight: 45 }}>
-          Good Morning Olakino
-        </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            height: 50,
-            borderRadius: 25,
-            backgroundColor: COLORS.white,
-            marginVertical: 40,
-          }}>
-          <FontAwesome5Icons
-            name="search"
-            size={22}
-            style={{ marginHorizontal: 20 }}
-          />
-          <TextInput placeholder="Search" style={{ flex: 1 }} />
-        </View>
-        <View
-          style={{
-            width: 60,
-            height: 60,
-            borderRadius: 30,
-            backgroundColor: COLORS.accent + '55',
-            position: 'absolute',
-            right: -30,
-            bottom: 50,
-          }}></View>
-      </View>
-
-      <FlatList
-        data={exercises}
-        style={{
-          paddingHorizontal: 20,
-          marginTop: -60,
-        }}
-        contentContainerStyle={{
-          flex: 1,
-          alignItems: 'center',
-        }}
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        keyExtractor={item => item.title}
-        renderItem={({ item }) => <ExerciseItem exercise={item} />}
-      />
-    </SafeAreaView>
-  )
+                        </View>
+                        <View>
+                            <Text>email : {item.title}</Text>
+                        </View>
+                        <View>
+                            <Text>body : {item.body}</Text>
+                        </View>
+                    </View>
+                </View>}
+            />
+        </SafeAreaView>
+    )
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  fabContainer: {
-    justifyContent: 'flex-end',
-    flexDirection: 'row',
-    position: 'absolute',
-    right: 10,
-    bottom: 20
-  },
-  fabButton: {
-    backgroundColor: 'gray',
-    borderRadius: 35,
-    width: 70,
-    height: 70,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  icon: {
 
-  },
-})
 export default ListScreen
+
+const styles = StyleSheet.create({
+    container: {
+
+        flex: 1,
+        backgroundColor: '#ddd',
+        textAlign: 'center',
+        borderRadius: 10,
+        margin: 15,
+        borderColor: '#ddd'
+
+    },
+    styletitle: {
+        padding: 5,
+        flex: 1,
+        backgroundColor: '#ddd',
+        marginBottom: 5,
+        borderRadius: 10,
+    },
+    style1: {
+        fontWeight: '700'
+    },
+    style2: {
+        fontWeight: '100'
+    },
+    imagestyle: {
+        width: 80,
+        height: 200,
+        resizeMode: 'contain',
+        alignItems: "center",
+    }
+
+})

@@ -18,6 +18,8 @@ import {
 
 
 function Login({ navigation }) {
+
+  
   // Set an initializing state whilst Firebase connects
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
