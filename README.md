@@ -1,2 +1,2 @@
 # Olakino
-Training Tracking Mobil App
+OLAKINO(Diet and Exercise Tracking/Management System) Mobil App
